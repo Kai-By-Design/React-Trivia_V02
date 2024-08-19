@@ -6,18 +6,29 @@ import QuestionCard from "./components/QuestionCard";
 import questions from "./components/questions";
 
 function App() {
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
   const [currentQ, setCurrentQ] = useState(0);
   return (
     <>
       <div>
-        <QuestionCard currentQ={questions[currentQ + 1]} />
-        <button onClick={() => setCurrentQ((currentQ) => currentQ - 1)}>
-          Back
-        </button>
-        <button onClick={() => setCurrentQ((currentQ) => currentQ + 1)}>
-          Next
-        </button>
+        <QuestionCard
+          // key={questions[currentQ].id}
+          currentQ={questions[currentQ]}
+        />
+        <div style>
+          <button
+            className="nextBackButtons"
+            onClick={() => setCurrentQ((currentQ) => currentQ - 1)}
+          >
+            Back
+          </button>
+          <button
+            className="nextBackButtons"
+            onClick={() => setCurrentQ((currentQ) => currentQ + 1)}
+          >
+            Next
+          </button>
+        </div>
       </div>
     </>
     // <>

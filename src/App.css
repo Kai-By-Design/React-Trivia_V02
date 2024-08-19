@@ -41,14 +41,25 @@
   color: #888;
 }
 
+.gameBoard {
+  background: linear-gradient(#0e0124, #22074d);
+}
+
 .question {
   width: 80%;
+  justify-content: center;
   /* background: linear-gradient(#100241, black); */
   border: 12px solid grey;
-  text-align: center;
+  /* text-align: center; */
   padding: 20px;
   border-radius: 10px;
   font-size: 20px;
+  /* margin-left: 15%;
+  margin-right: 15%; */
+}
+.question.span {
+  font-size: 10px;
+  font-style: italic;
 }
 
 .answers {
@@ -58,7 +69,8 @@
   flex-wrap: wrap;
 }
 
-.answer {
+/* BUTTON OPTION 1 */
+/* .answer {
   width: 25%;
   padding: 10px;
   text-align: center;
@@ -69,11 +81,63 @@
   font-weight: 300;
   cursor: pointer;
   margin: 0 10px 20px 10px;
+} */
+
+/* BUTTON OPTION 2 */
+.nextBackButtons {
+  /* width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /* justify-items: auto; */
+  border: 3px solid grey;
+  flex-wrap: wrap;
+  padding: 15px;
+  margin: 20px;
+}
+
+.answer {
+  width: 40%;
+  padding: 10px;
+  text-align: center;
+  font-style: oblique;
+  background: linear-gradient(#c5cee4, rgb(133, 201, 227));
+  border: 3px solid slategray;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  margin: 0 10px 20px 10px;
 }
 
 .answer:hover,
 .answer.active {
   background: mediumblue;
+}
+
+.answer.wrong {
+  animation: wrong 3s ease forwards;
+}
+
+@keyframes wrong {
+  0%,
+  22%,
+  42% {
+    background: mediumblue;
+  }
+  20%,
+  40%,
+  60% {
+    background: linear-gradient(#d28d3e, #22074d);
+  }
+  62%,
+  100% {
+    background: red;
+    border: 4px solid rgb(120, 51, 51);
+    color: white;
+    font-size: larger;
+    font-style: oblique;
+  }
 }
 
 .answer.correct {
@@ -89,31 +153,22 @@
   20%,
   40%,
   60% {
-    background: linear-gradient(#0e0124, #22074d);
+    background: linear-gradient(#a3de8a, #22074d);
   }
   62%,
   100% {
     background: green;
+    border: 4px solid rgb(178, 232, 178);
+    color: white;
+    font-size: larger;
+    font-style: oblique;
   }
 }
 
-.answer.incorrect {
-  animation: correct 3s ease forwards;
-}
-
-@keyframes correct {
-  0%,
-  22%,
-  42% {
-    background: mediumblue;
-  }
-  20%,
-  40%,
-  60% {
-    background: linear-gradient(#0e0124, #22074d);
-  }
-  62%,
-  100% {
-    background: red;
-  }
+.answer.correct.back {
+  background: green;
+  border: 4px solid rgb(178, 232, 178);
+  color: white;
+  font-size: larger;
+  font-style: oblique;
 }
