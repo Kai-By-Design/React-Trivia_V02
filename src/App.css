@@ -41,22 +41,31 @@
   color: #888;
 }
 
+/* .gameBoard {
+  justify-content: center;
+} */
+
 .gameBoard {
-  background: linear-gradient(#0e0124, #22074d);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
 }
 
 .question {
   width: 80%;
   justify-content: center;
-  /* background: linear-gradient(#100241, black); */
+  background-image: linear-gradient(
+    rgb(243, 209, 215),
+    rgb(219, 189, 133),
+    rgb(255, 255, 203)
+  );
   border: 12px solid grey;
-  /* text-align: center; */
   padding: 20px;
   border-radius: 10px;
   font-size: 20px;
-  /* margin-left: 15%;
-  margin-right: 15%; */
 }
+
 .question.span {
   font-size: 10px;
   font-style: italic;
@@ -69,33 +78,48 @@
   flex-wrap: wrap;
 }
 
-/* BUTTON OPTION 1 */
-/* .answer {
-  width: 25%;
-  padding: 10px;
-  text-align: center;
-  background: linear-gradient(#0e0124, #22074d);
-  border: 1px solid white;
-  border-radius: 15px;
-  font-size: 20px;
-  font-weight: 300;
-  cursor: pointer;
-  margin: 0 10px 20px 10px;
-} */
+/* Styles for the question number when going back */
+.questionNumber.greyedOut {
+  color: grey;
+}
 
-/* BUTTON OPTION 2 */
-.nextBackButtons {
-  /* width: 30%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  /* justify-items: auto; */
+/* Next and Back Buttons */
+/* .nextBackButtons {
   border: 3px solid grey;
   flex-wrap: wrap;
   padding: 15px;
   margin: 20px;
+} */
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
+.nextBackButtons {
+  width: 120px;
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid grey;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.nextBackButtons:hover {
+  background-color: #e0e0e0;
+}
+
+.nextBackButtons:disabled {
+  background-color: #d0d0d0;
+  cursor: not-allowed;
+}
+
+/* Answer Button Styles */
 .answer {
   width: 40%;
   padding: 10px;
@@ -115,10 +139,17 @@
   background: mediumblue;
 }
 
+/* Animation for wrong answer */
 .answer.wrong {
   animation: wrong 3s ease forwards;
 }
 
+/* Animation for correct answer */
+.answer.correct {
+  animation: correct 3s ease forwards;
+}
+
+/* Keyframe for wrong answer animation */
 @keyframes wrong {
   0%,
   22%,
@@ -128,7 +159,7 @@
   20%,
   40%,
   60% {
-    background: linear-gradient(#d28d3e, #22074d);
+    background: linear-gradient(#d28d3e, #ced428);
   }
   62%,
   100% {
@@ -140,10 +171,7 @@
   }
 }
 
-.answer.correct {
-  animation: correct 3s ease forwards;
-}
-
+/* Keyframe for correct answer animation */
 @keyframes correct {
   0%,
   22%,
@@ -153,7 +181,7 @@
   20%,
   40%,
   60% {
-    background: linear-gradient(#a3de8a, #22074d);
+    background: linear-gradient(#a3de8a, #265820);
   }
   62%,
   100% {
@@ -165,10 +193,110 @@
   }
 }
 
-.answer.correct.back {
-  background: green;
+/* Styles to disable animation when 'Back' is pressed */
+.answer.correct.no-animation,
+.answer.wrong.no-animation {
+  animation: none;
+}
+
+/* Static styles for correct answer without animation */
+.answer.correct.no-animation {
+  background-color: green;
   border: 4px solid rgb(178, 232, 178);
   color: white;
   font-size: larger;
   font-style: oblique;
+}
+
+/* Static styles for wrong answer without animation */
+.answer.wrong.no-animation {
+  background-color: red;
+  border: 4px solid rgb(120, 51, 51);
+  color: white;
+  font-size: larger;
+  font-style: oblique;
+}
+
+.score {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.landingPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.startButton {
+  padding: 15px 30px;
+  font-size: 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.startButton:hover {
+  background-color: #45a049;
+}
+
+.recapPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.recapPage p {
+  margin: 10px 0;
+}
+
+.backMode {
+  color: grey;
+}
+
+.answer.backMode {
+  background-color: transparent; /* Removes the animation colors */
+  animation: none; /* Disables animation */
+  cursor: default;
+}
+
+.answer.backMode:hover {
+  background: none; /* Removes hover effect */
+}
+
+.scoreBoard {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+.restartButton {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.restartButton:hover {
+  background-color: #45a049;
+}
+
+.navigationButtons {
+  padding: 20px;
 }
